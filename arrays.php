@@ -5,8 +5,8 @@ echo count($nombres) . "<br>";
 echo implode(' ', $nombres) . "<br>";
 
 $ordenar = $nombres;
-asort($ordenador);
-foreach ($nombres as $key => $val) {
+asort($ordenar);
+foreach ($ordenar as $key => $val) {
     echo "$key = $val\n" . "<br>";
 }
 
