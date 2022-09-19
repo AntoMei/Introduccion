@@ -6,7 +6,7 @@
   $media = 0;
   $x=1;
   for($i = 0; $i < $contar; $i++){
-
+    
     $media += $temperaturas[$i];
     echo ($i+1)." día = ".$temperaturas[$i]."&deg;&nbsp;&nbsp;&nbsp;&nbsp; ";
 
@@ -18,13 +18,10 @@
    
     $x++;
  }
- 
+
   $media = $media/$contar;
-
   echo "<br>Las cinco temperaturas mínimas = $temperaturas[0]&deg;, $temperaturas[1]&deg, $temperaturas[2]&deg, $temperaturas[3]&deg, $temperaturas[4]&deg<br />";
-
   echo "Temperatura media  = ".number_format($media,2)."&deg;<br />";  
- 
   rsort($temperaturas);
   echo "Las cinco temperaturas máxima = $temperaturas[0]&deg;, $temperaturas[1]&deg, $temperaturas[2]&deg, $temperaturas[3]&deg, $temperaturas[4]&deg<br />";
 ?>
