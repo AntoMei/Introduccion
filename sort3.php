@@ -1,7 +1,7 @@
 <?php
-$longitud = array ("Antonio" => "Es muy listo ",
-                   "Pepe" => "No es tan listo",
-                   "Lucas" => "LO sabe todo");
+$longitud = array ("Antonio" => "Es muy listo, porque lo aprueba todo",
+                   "Pepe" => "No es tan listo,",
+                   "Lucas" => "Lo sabe todo");
 
 
 function cmp($a,$b){
