@@ -11,7 +11,24 @@ $contactos = array(
         array("codigo" => 5, "nombre" => "Nora Jover",
         "telefono" => "638765432", "email" => "norajover@hotmail.com"),
         );
-
-    print_r($contactos);
     echo "<br>";
+
+    /*$filtrarPor = strtolower($_GET["filtrarPor"] ?? "@gmail.com");
+
+    $filtrados = array_filter($contactos, 
+        function($contacto) use ($filtrarPor){
+
+            return strpos(strtolower($contacto["email"]), $filtrarPor) !== FALSE;
+
+        });
+
+    print_r($filtrados);*/
+    $filtrados = [];
+    $filtrarPor = strtolower($_GET["filtrarPor"] ?? "email");
+    foreach ($contactos as $contacto) {
+        if (strpos(strtolower($contacto["email"]), $filtrarPor) !== FALSE) {
+             $filtrados[] = $contacto;
+    }
+}
+    print_r($filtrados)
 ?>
