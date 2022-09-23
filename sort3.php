@@ -1,6 +1,6 @@
 <?php
 $longitud = array ("Antonio" => "Es muy listo, porque lo aprueba todo",
-                   "Pepe" => "No es tan listo,",
+                   "Pepe" => "No es tan alisto,",
                    "Lucas" => "Lo sabe todo");
 
 
