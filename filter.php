@@ -20,5 +20,5 @@ $contactos = array(
              $filtrados[] = $contacto;
     }
 }
-    print_r($filtrados);
+print_r($filtrados);
 ?>
