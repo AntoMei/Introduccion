@@ -13,16 +13,6 @@ $contactos = array(
         );
     echo "<br>";
 
-    /*$filtrarPor = strtolower($_GET["filtrarPor"] ?? "@gmail.com");
-
-    $filtrados = array_filter($contactos, 
-        function($contacto) use ($filtrarPor){
-
-            return strpos(strtolower($contacto["email"]), $filtrarPor) !== FALSE;
-
-        });
-
-    print_r($filtrados);*/
     $filtrados = [];
     $filtrarPor = strtolower($_GET["filtrarPor"] ?? "email");
     foreach ($contactos as $contacto) {
