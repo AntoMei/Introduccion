@@ -1,32 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <?php
-    if (sizeof($errores) > 0) {
-        foreach ($$errores as $error) {
-            echo $error . "<br>";
-        }
-    }
-    ?>
-    
-<form method="POST" enctype="multipart/form-data">
-    Nombre de usuari@ <input type="text" name="nombre"><br><br>
-    Correo Electrónico <input type="email" name="correo"><br><br>
-    Contraseña <input type="email" name="contraseña"><br><br>
-    Confirma la contraseña <input type="email" name="confirmaContraseña"><br><br>
-    <input type="submit" value="Registrase">
-    <br><br>
-    ¿Ya eres miembro? <a href="/home/alumno/Documentos/Introduccion/Registro/loginRegistro.php">Acceso usuari@s</a>
-</form>
-</body>
-</html>
-
 <?php
 
 $errores = [];
@@ -66,7 +37,7 @@ $confirmaContraseña = $_POST['confirmaContraseña'] ?? "";
 if (strlen($nombre) == 0) {
     $errores[] = "Rellene el campo nombre";
 }
-if (strlen($email) == 0) {
+if (strlen($correo) == 0) {
     $errores[] = "Rellene el campo email";
 }
 if ($contraseña != $confirmaContraseña) {
@@ -81,3 +52,33 @@ $pdoSt->bindParam(3, $password);
 $pdoSt->execute();
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<?php
+        if (sizeof($errores) > 0 ){
+            foreach ($errores as $error){
+                echo $error . "<br>";
+            }
+        }
+    ?>
+    <br>
+    
+<form method="POST">
+    Nombre de usuari@ <input type="text" name="nombre"><br><br>
+    Correo Electrónico <input type="email" name="correo"><br><br>
+    Contraseña <input type="text" name="contraseña"><br><br>
+    Confirma la contraseña <input type="text" name="confirmaContraseña"><br><br>
+    <input type="submit" value="Registrase">
+    <br><br>
+    </form>
+    ¿Ya eres miembro? <a href="./loginRegistro.php">Acceso usuari@s</a>
+</body>
+</html>
