@@ -1,57 +1,61 @@
 <?php
 
 $errores = [];
+if (sizeof($_POST) != 0) {
+    # code...
 
-$opciones = array(
 
-PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
+    $opciones = array(
 
-PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
 
-PDO::ATTR_PERSISTENT => true
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 
-);
+    PDO::ATTR_PERSISTENT => true
 
-$pdo = new PDO(
+    );
 
-'mysql:host=localhost;dbname=users;charset=utf8',
+    $pdo = new PDO(
 
-'root',
+    'mysql:host=localhost;dbname=users;charset=utf8',
 
-'sa',
+    'root',
 
-$opciones);
+    'sa',
 
-/*$resultado = $pdo->query("SELECT email FROM users");
-while ($registro = $resultado->fetch()) {
-    echo "email ".$registro['email'].": ";
-}*/
+    $opciones);
 
-//Datos
+    /*$resultado = $pdo->query("SELECT email FROM users");
+    while ($registro = $resultado->fetch()) {
+        echo "email ".$registro['email'].": ";
+    }*/
 
-$nombre = $_POST['nombre'] ?? "";
-$correo = $_POST['correo'] ?? "";
-$contraseña = $_POST['contraseña'] ?? "";
-$confirmaContraseña = $_POST['confirmaContraseña'] ?? "";
+    //Datos
 
-if (strlen($nombre) == 0) {
-    $errores[] = "Rellene el campo nombre";
-}
-if (strlen($correo) == 0) {
-    $errores[] = "Rellene el campo email";
-}
-if ($contraseña != $confirmaContraseña) {
-    $errores[] = "La contraseña no coincide";
-}
+    $nombre = $_POST['nombre'] ?? "";
+    $correo = $_POST['correo'] ?? "";
+    $contraseña = $_POST['contraseña'] ?? "";
+    $confirmaContraseña = $_POST['confirmaContraseña'] ?? "";
 
-if (sizeof($errores) == 0) {
-    $pdoSt = $pdo->prepare('INSERT INTO users (username, email, password) VALUES ( ?, ?, ?)');
+    if (strlen($nombre) == 0) {
+        $errores[] = "Rellene el campo nombre";
+    }
+    if (strlen($correo) == 0) {
+        $errores[] = "Rellene el campo email";
+    }
+    if ($contraseña != $confirmaContraseña) {
+        $errores[] = "La contraseña no coincide";
+    }
 
-    $pdoSt->bindParam(1, $nombre);
-    $pdoSt->bindParam(2, $correo);
-    $pdoSt->bindParam(3, $contraseña);
+    if (sizeof($errores) == 0) {
+        $pdoSt = $pdo->prepare('INSERT INTO users (username, email, password) VALUES ( ?, ?, ?)');
 
-    $pdoSt->execute();
+        $pdoSt->bindParam(1, $nombre);
+        $pdoSt->bindParam(2, $correo);
+        $pdoSt->bindParam(3, $contraseña);
+
+        $pdoSt->execute();
+    }
 }
 ?>
 
