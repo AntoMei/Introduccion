@@ -45,11 +45,13 @@ if ($contraseña != $confirmaContraseña) {
 }
 
 if (sizeof($errores) == 0) {
-$pdoSt =  $pdp-> prepare('INSERT into users(nombre, correo, contraseña) VALUES (?,?,?)');
-$pdoSt->bindParam(1, $nombre);
-$pdoSt->bindParam(2, $email);
-$pdoSt->bindParam(3, $password);
-$pdoSt->execute();
+    $pdoSt = $pdo->prepare('INSERT INTO users (username, email, password) VALUES ( ?, ?, ?)');
+
+    $pdoSt->bindParam(1, $nombre);
+    $pdoSt->bindParam(2, $correo);
+    $pdoSt->bindParam(3, $contraseña);
+
+    $pdoSt->execute();
 }
 ?>
 
