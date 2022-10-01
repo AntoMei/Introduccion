@@ -24,8 +24,30 @@ if (sizeof($_POST) != 0) {
 
     $opciones);
 
+    $nombre = $_POST['nombre'];
+    $contraseña = $_POST['contraseña'];
+
+    if (strlen($nombre) == 0) {
+        $errores[] = "Introduzca un usuario por favor";
+        # code...
+    }
+    if (strlen($contraseña) == 0) {
+        $errores[] = "Introduzca la contraseña por favor";
+    }
+    if(sizeof($errores) == 0){
+        $usuario = $pdo->query("SELECT username, email FROM users WHERE username = '$nombre' and password = '$contraseña'");
+        
+        $usuario->execute();
+    }
+    if ($registro = $usuario->fetch()){
+            echo "Logueado";
+    }else{
+        $errores[] = "El usuario o contraseña no coinciden, vuelva a intentarlo";
+    }
+
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,10 +59,17 @@ if (sizeof($_POST) != 0) {
 
 <form method="POST" enctype="multipart/form-data">
     Nombre de usuari@ <input type="text" name="nombre"><br><br>
-    Contraseña: <input type="email" name="email"><br><br>
+    Contraseña: <input type="text" name="contraseña"><br><br>
     <input type="submit" value="Acceder">
     <br><br>
-    ¿Todavía no eres miembro? <a href="">Registrarse</a>
+    ¿Todavía no eres miembro? <a href="./formularioRegistro.php">Registrarse</a>
 </form>
+<?php
+        if (sizeof($errores) > 0 ){
+            foreach ($errores as $error){
+                echo $error . "<br>";
+            }
+        }
+    ?>
 </body>
 </html>
