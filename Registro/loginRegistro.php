@@ -1,4 +1,5 @@
 <?php
+session_start();
 $errores = [];
 if (sizeof($_POST) != 0) {
     # code...
@@ -41,6 +42,7 @@ if (sizeof($_POST) != 0) {
     }
     if ($registro = $usuario->fetch()){
             echo "Logueado";
+            $_SESSION['username'] = $nombre;
     }else{
         $errores[] = "El usuario o contraseña no coinciden, vuelva a intentarlo";
     }
@@ -59,7 +61,7 @@ if (sizeof($_POST) != 0) {
 
 <form method="POST" enctype="multipart/form-data">
     Nombre de usuari@ <input type="text" name="nombre"><br><br>
-    Contraseña: <input type="text" name="contraseña"><br><br>
+    Contraseña: <input type="password" name="contraseña"><br><br>
     <input type="submit" value="Acceder">
     <br><br>
     ¿Todavía no eres miembro? <a href="./formularioRegistro.php">Registrarse</a>

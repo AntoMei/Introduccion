@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+echo $_SESSION['username'];
 $errores = [];
 if (sizeof($_POST) != 0) {
     # code...
@@ -80,8 +81,8 @@ if (sizeof($_POST) != 0) {
 <form method="POST">
     Nombre de usuari@ <input type="text" name="nombre"><br><br>
     Correo Electrónico <input type="email" name="correo"><br><br>
-    Contraseña <input type="text" name="contraseña"><br><br>
-    Confirma la contraseña <input type="text" name="confirmaContraseña"><br><br>
+    Contraseña <input type="password" name="contraseña"><br><br>
+    Confirma la contraseña <input type="password" name="confirmaContraseña"><br><br>
     <input type="submit" value="Registrase">
     <br><br>
     </form>
